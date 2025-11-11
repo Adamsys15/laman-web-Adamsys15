@@ -1,0 +1,100 @@
+<html>
+<body>
+<style>
+    body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+    .quiz-box { background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; }
+    .question { font-weight: bold; }
+    .option { margin: 5px 0; }
+    button { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Hantar Jawapan</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Apakah ibu negara Malaysia?",
+        options: ["Johor Bahru", "Kuala Lumpur", "Putrajaya", "Shah Alam"],
+        answer: 1
+      },
+      {
+        question: "Siapakah Bapa Kemerdekaan Malaysia?",
+        options: ["Tunku Abdul Rahman", "Tun Mahathir", "Tun Razak", "Anwar Ibrahim"],
+        answer: 0
+      },
+      {
+        question: "Berapakah 5 x 6?",
+        options: ["30", "35", "25", "40"],
+        answer: 0
+      },
+      {
+        question: "Apakah simbol kimia bagi air?",
+        options: ["O2", "CO2", "H2O", "NaCl"],
+        answer: 2
+      },
+      {
+        question: "Siapakah pencipta Facebook?",
+        options: ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Elon Musk"],
+        answer: 2
+	  },
+	  {
+	    question:"Apakah maksud tamadun dalam bahasa Inggeris?",
+		options:["Pencapaian tertinggi manusia dan organisasi","Pencapaian tertinggi sebuah kelab","Pencapaian tertinggi dalam aspek lahiriah dan jasmani"],
+		answer:0
+	  },
+	        {
+        question: "Apakah negara terluas di dunia?",
+        options: ["Amerika Syarikat", "China", "Rusia", "Kanada"],
+        answer: 2
+	  },
+	  {
+        question: "Apakah negara yang mempunyai jumlah penduduk yang ramai?",
+        options: ["Amerika Syarikat", "China", "Rusia", "India"],
+        answer: 3
+	  },
+	  {
+        question: "Rakyat di negara manakah yang mempunyai penduduk paling ramah?",
+        options: ["Arab Saudi", "Jepun", "Malaysia", "Afrika Selatan"],
+        answer: 3
+	  },
+	  {
+        question: "Apakah negara yang paling bersih di dunia?",
+        options: ["Jepun", "Estonia", "Korea Selatan", "India"],
+        answer: 1
+	  },
+	  {
+        question: "Apakah negara paling kecil di dunia?",
+        options: ["Kota Vatikan", "Lubnan", "Georgia", "Monaco"],
+        answer: 0
+	  },
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+
+    quizData.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.innerHTML = `<p class="question">${i + 1}. ${q.question}</p>` +
+        q.options.map((opt, j) =>
+          `<label class="option"><input type="radio" name="q${i}" value="${j}"> ${opt}</label>`
+        ).join("");
+      quizContainer.appendChild(div);
+    });
+
+    function submitQuiz() {
+      let score = 0;
+      quizData.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && parseInt(selected.value) === q.answer) {
+          score++;
+        }
+      });
+      document.getElementById("result").innerHTML = `<h3>Skor anda: ${score} / ${quizData.length}</h3>`;
+    }
+  </script>
+</body>
+</html>

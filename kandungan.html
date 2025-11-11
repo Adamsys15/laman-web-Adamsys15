@@ -1,0 +1,45 @@
+<html>
+<style>
+h1{color:black;
+   font-size:21px
+   font-family:verdana;
+  }
+body{
+   background-image:url('wallpaper.webp');
+   background-repeat:no-repeat;
+   background-size:cover;
+   background-position:center;
+#masa{
+    position:absolute;
+	right:100px:;
+	top:80px;
+	font-size:20px;
+	 }
+h5{position:absolute;
+   right:840px;
+   top:20px;
+   font-size:30px;
+    }
+  </style>
+<body background="wallpaper.webp">
+<center>
+<h1>Selamat Datang ke Laman Web Adam!</h1>
+<hr>
+</center>
+<h5>Tarikh dan waktu:</h5>
+<p id="masa"></p>
+<script>
+  function updateMasa() {
+    let sekarang = new Date();
+    // Papar hari + tarikh + masa
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let hariTarikh = sekarang.toLocaleDateString('ms-MY', options);
+    let masa = sekarang.toLocaleTimeString('ms-MY');
+
+    document.getElementById("masa").innerText = hariTarikh + " | " + masa;
+  }
+
+  setInterval(updateMasa, 1000);
+</script>
+</body>
+</html>
